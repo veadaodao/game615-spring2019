@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playercontrol : MonoBehaviour
 {
@@ -168,5 +169,9 @@ public class playercontrol : MonoBehaviour
         }
 
         
+    }
+    public void resetscreen()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }

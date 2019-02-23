@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class battleshipmove : MonoBehaviour
 {
-    public float speed = 10;
+    public float speed = 8;
     void Start()
     {
 

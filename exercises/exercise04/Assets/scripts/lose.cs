@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class lose : MonoBehaviour
 {
-    public int wallHP = 10;
+    public int wallHP = 5;
     public GameObject player;
     public GameObject badguyboats;
     private Rigidbody rb;
@@ -13,7 +13,7 @@ public class lose : MonoBehaviour
     public Text wallText;
     void Start()
     {
-        wallHP = 10;
+        wallHP = 5;
         loseText.text = "";
         setwallText();
     }
@@ -48,4 +48,6 @@ public class lose : MonoBehaviour
     {
         loseText.text = "You lose";
     }
+
+
 }
