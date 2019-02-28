@@ -8,7 +8,7 @@ public class win : MonoBehaviour
     private Rigidbody rb;
     private int damage;
     public Text winText;
-
+    public GameObject player;
     void Start()
     {
 
@@ -19,7 +19,7 @@ public class win : MonoBehaviour
 
     void Update()
     {
-
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -43,5 +43,7 @@ public class win : MonoBehaviour
     private void setwinText()
     {
         winText.text = "legendary!!!";
+        Destroy(winText, 10f);
+        player.gameObject.SetActive(false);
     }
 }

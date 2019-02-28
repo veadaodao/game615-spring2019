@@ -20,7 +20,6 @@ public class playercontrol : MonoBehaviour
     public Text sabernumberText;
     public Text backtohomeText;
     public Text lifeText;
-    public Text winText;
     public Text loseText;
 
     void Start()
@@ -31,7 +30,6 @@ public class playercontrol : MonoBehaviour
         setsabernumberText();
         lifeText.text = "life: 3";
         backtohomeText.text = "";
-        winText.text = "";
         loseText.text = "";
     }
 
@@ -122,10 +120,10 @@ public class playercontrol : MonoBehaviour
     {
         if (sabernumber == 0)
         {
-            backtohomeText.text = "back to home!!!";
+            backtohomeText.text = "back to home!!! reload";
             if (sabernumber > 0)
             {
-                Destroy(backtohomeText);
+                Destroy(backtohomeText,3f);
             }
 
         }
@@ -137,12 +135,9 @@ public class playercontrol : MonoBehaviour
     private void setloseText()
     {
         loseText.text = "You lose";
+        playerPrefab.gameObject.SetActive(false);
     }
 
-    private void setwinText()
-    {
-        winText.text = "legendary!!!";
-    }
     public void resetscreen()
     {
         SceneManager.LoadScene("SampleScene");
