@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ce810040f6ba4bd4e94f00abb7464b52
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - portrait: {instanceID: 0}
+  - saberPrefab: {instanceID: 0}
+  - attackcubepref: {fileID: 1441564555145606612, guid: 255a80a4670ace440986fca9319a88c0,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
