@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2173324ce14a4d3479be0f1f751d28ba
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - tower: {fileID: 165880, guid: f4f6b630159e6b34386dec2579f250b2, type: 3}
+  - coinpreb: {fileID: 7838317966557498883, guid: 77c0562e50753cc4481ca53532beb67b,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
