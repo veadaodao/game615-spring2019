@@ -8,16 +8,20 @@ public class smalldragonmovement : MonoBehaviour
     public float speed;
     public GameObject tower;
     private Rigidbody rb;
-    private float damage;
 
     public GameObject coinpreb;
+
+    private float health;
+    private float starthealth = 100;
+    public Image healthbar;
 
     void Start()
     {
 
         tower = GameObject.Find("tower");
-        speed = Random.Range(5f, 10f);
-        damage = 0f;
+        speed = Random.Range(10f, 15f);
+
+        health = starthealth;
 
     }
 
@@ -41,38 +45,32 @@ public class smalldragonmovement : MonoBehaviour
 
         if (other.gameObject.tag == "attackcube")
         {
-
-            damage = damage + 1f;
-            if (damage >= 5f)
-            {
-                Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-                rb.useGravity = false;
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-                other.gameObject.SetActive(false);
-                this.gameObject.SetActive(false);
-                showcoin();
-            }
-
+            other.gameObject.SetActive(false);
+            takedamage();
         }
         if (other.gameObject.tag == "saber")
         {
-
-            damage = damage + 1f;
-            if (damage >= 5f)
-            {
-                Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-                rb.useGravity = false;
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-                other.gameObject.SetActive(false);
-                this.gameObject.SetActive(false);
-                showcoin();
-            }
-
+            other.gameObject.SetActive(false);
+            takedamage();           
         }
 
     }
+
+    public void takedamage()
+    {
+        health -= 45;
+        healthbar.fillAmount = health / 100f;
+        if (health <= 0)
+        {
+            this.gameObject.SetActive(false);
+            Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+            rb.useGravity = false;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            showcoin();
+        }
+    }
+
     void showcoin()
     {
         GameObject coin = Instantiate(coinpreb, transform.position, transform.rotation);

@@ -11,7 +11,7 @@ public class UnitScript : MonoBehaviour
     CharacterController cc;
     GameManager gameManager;
 
-    float moveSpeed = 30f;
+    float moveSpeed = 50f;
     float rotateSpeed = 60f;
     float jumpForce = 0.5f;
     float gravityModifier = 0.2f;
@@ -36,15 +36,16 @@ public class UnitScript : MonoBehaviour
     public GameObject attackcubepref;
     public GameObject wolfrider;
     private int coinnumber = 0;
-    private int villagedamage =0;
-
-    private bool wolfrideractive = false;
+    private float starthealth = 100;
+    private float health;
 
     public Text coinText;
     public Text loseText;
 
     public Animator paladinanim;
     public Animator wolfrideranim;
+
+    public Image healthbar;
 
     void Start()
     {
@@ -56,18 +57,19 @@ public class UnitScript : MonoBehaviour
 
         updateVisuals();
         previousIsGroundedValue = cc.isGrounded;
-        coinnumber = 0;
-        villagedamage = 0;
-        setcoinText();
+
         loseText.text = "";
+        setcoinText();
 
         paladinanim = GetComponent<Animator>();
         wolfrideranim = GetComponent<Animator>();
+
+        health = starthealth;
+
     }
 
     void Update()
     {
-        setcoinText();
         if (selected && !justSelected)
         {
             float hAxis = Input.GetAxis("Horizontal");
@@ -134,8 +136,6 @@ public class UnitScript : MonoBehaviour
           
         }
         justSelected = false;
-        
-
     }
 
     void OnMouseEnter()
@@ -183,57 +183,69 @@ public class UnitScript : MonoBehaviour
 
         if (other.gameObject.tag == "coin")
         {
-
-            coinnumber = coinnumber + 1;
+            coinnumber = coinnumber +1;
             setcoinText();
             other.gameObject.SetActive(false);
-
+            Debug.Log("testing");
         }
         if (other.gameObject.tag == "dragon")
         {
-            
-            villagedamage = villagedamage+1;
+
+            takedamage();
             setcoinText();
             other.gameObject.SetActive(false);
 
-            if (villagedamage == 10)
+            if (health == 0)
             {
                 this.gameObject.SetActive(false);
                 setloseText();
             }
         }
     }
-    public void activewolf()
+
+    public void takedamage()
     {
-
-       if (coinnumber >= 1)
-       {
-            wolfrideractive = true;
-            if (wolfrideractive == true)
-            {
-                wolfrider.gameObject.SetActive(true);
-                coinnumber = coinnumber - 10;
-                setcoinText();
-            }
-       }
-        
-
+        health -= 10;
+        healthbar.fillAmount = health/100f;
+        if (health <= 0)
+        {
+            setloseText();
+            this.gameObject.SetActive(false);
+        }
     }
 
+    public void activewolf()
+    {
+        coinnumber = coinnumber - 10;
+        wolfrider.gameObject.SetActive(true);      
+        setcoinText();       
+    }
 
 
     public void setcoinText()
     {
         coinText.text = "coin:" + coinnumber.ToString();
-        
+        if (coinnumber < -30)
+        {
+            loseText.text = "You go broke";
+            this.gameObject.SetActive(false);
+        }
     }
 
     private void setloseText()
     {
         loseText.text = "You die";
     }
+
     public void resetscreen()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void healing()
+    {
+        coinnumber = coinnumber - 10;
+        health = 100;
+        setcoinText();
     }
 }

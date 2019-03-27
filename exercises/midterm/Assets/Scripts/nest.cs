@@ -8,11 +8,15 @@ public class nest : MonoBehaviour
     private int damage;
     public GameObject coinpreb;
 
+    private float health;
+    private float starthealth = 100;
+    public Image healthbar;
+
     public Text winText;
     void Start()
     {
-        damage = 0;
         winText.text = "";
+        health = starthealth;
     }
 
 
@@ -20,27 +24,30 @@ public class nest : MonoBehaviour
     {
         
     }
+
     void OnTriggerEnter(Collider other)
     {
 
         if (other.gameObject.tag == "attackcube")
         {
-
-            damage = damage + 1;
-            if (damage >= 5f)
-            {
-                Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-                rb.useGravity = false;
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-                other.gameObject.SetActive(false);
-                this.gameObject.SetActive(false);
-                showcoin();
-                setwinText();
-            }
-
+            other.gameObject.SetActive(false);
+            takedamage();
         }
-
+    }
+    public void takedamage()
+    {
+        health -= 5;
+        healthbar.fillAmount = health / 100f;
+        if (health <= 0)
+        {
+            this.gameObject.SetActive(false);
+            Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+            rb.useGravity = false;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            showcoin();
+            setwinText();
+        }
     }
     void showcoin()
     {
