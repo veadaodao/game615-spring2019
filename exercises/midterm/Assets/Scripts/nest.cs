@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class nest : MonoBehaviour
 {
@@ -11,11 +12,14 @@ public class nest : MonoBehaviour
     private float health;
     private float starthealth = 100;
     public Image healthbar;
+    public int win = 0;
 
     public Text winText;
+    public Text gameoverText;
     void Start()
     {
         winText.text = "";
+        gameoverText.text = "";
         health = starthealth;
     }
 
@@ -36,7 +40,7 @@ public class nest : MonoBehaviour
     }
     public void takedamage()
     {
-        health -= 5;
+        health -= 2;
         healthbar.fillAmount = health / 100f;
         if (health <= 0)
         {
@@ -47,6 +51,8 @@ public class nest : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
             showcoin();
             setwinText();
+            Destroy(winText, 10f);
+            setgameoverText();
         }
     }
     void showcoin()
@@ -58,6 +64,14 @@ public class nest : MonoBehaviour
     private void setwinText()
     {
         winText.text = "You win!!!";
-        spawnpoint.gameObject.SetActive(false);
+
+    }
+    public void resetscreen()
+    {
+        SceneManager.LoadScene("openscene");
+    }
+    public void setgameoverText()
+    {
+        gameoverText.text = "click reset to try again";
     }
 }

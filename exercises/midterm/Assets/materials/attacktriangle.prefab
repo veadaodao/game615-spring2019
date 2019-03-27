@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8576186293289700590}
   m_Layer: 0
   m_Name: attacktriangle
-  m_TagString: saber
+  m_TagString: attackcube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
