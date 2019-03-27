@@ -7,7 +7,7 @@ public class nest : MonoBehaviour
 {
     private int damage;
     public GameObject coinpreb;
-
+    public GameObject spawnpoint;
     private float health;
     private float starthealth = 100;
     public Image healthbar;
@@ -58,5 +58,6 @@ public class nest : MonoBehaviour
     private void setwinText()
     {
         winText.text = "You win!!!";
+        spawnpoint.gameObject.SetActive(false);
     }
 }

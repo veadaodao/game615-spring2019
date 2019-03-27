@@ -4049,6 +4049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinpreb: {fileID: 7838317966557498883, guid: 77c0562e50753cc4481ca53532beb67b,
     type: 3}
+  spawnpoint: {fileID: 1707043843}
   healthbar: {fileID: 1839298963}
   winText: {fileID: 207335770}
 --- !u!65 &1262969175

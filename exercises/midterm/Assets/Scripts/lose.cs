@@ -36,7 +36,6 @@ public class lose : MonoBehaviour
             if (villagedamage == 5)
 
             {
-                Debug.Log("die");
                 setloseText();
                 
             }     
