@@ -35,7 +35,7 @@ public class UnitScript : MonoBehaviour
 
     public GameObject attackcubepref;
     public GameObject wolfrider;
-    private int coinnumber = 0;
+    private int coinnumber = 10;
     private float starthealth = 100;
     private float health;
 
